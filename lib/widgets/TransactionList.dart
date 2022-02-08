@@ -2,34 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide_2/model/Transaction.dart';
 import 'package:intl/intl.dart';
 
-class TransactionList extends StatefulWidget {
-  const TransactionList({Key? key}) : super(key: key);
+class TransactionList extends StatelessWidget {
+  final List<Transaction> myTransactions;
 
-  @override
-  _TransactionListState createState() => _TransactionListState();
-}
-
-class _TransactionListState extends State<TransactionList> {
-  final List<Transaction> transactions = [
-    Transaction(
-      id: '1',
-      title: 'New Computer',
-      amount: 1299.99,
-      dateTime: DateTime.now(),
-    ),
-    Transaction(
-      id: '2',
-      title: 'Weekly spending',
-      amount: 15.99,
-      dateTime: DateTime.now(),
-    ),
-  ];
+  const TransactionList({Key? key, required this.myTransactions})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: transactions.map(
-            (transaction) {
+    return Container(
+      height: MediaQuery.of(context).size.flipped.height,
+      child: ListView.builder(
+        itemCount: myTransactions.length,
+        itemBuilder: (context, position) {
           return Card(
             elevation: 5.0,
             margin: const EdgeInsets.symmetric(
@@ -53,7 +38,7 @@ class _TransactionListState extends State<TransactionList> {
                     margin: const EdgeInsets.all(10.0),
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      "\$" + transaction.amount.toString(),
+                      "\$" + myTransactions[position].amount.toString(),
                       style: const TextStyle(
                         color: Color(0xFF8F6330),
                         fontWeight: FontWeight.bold,
@@ -65,12 +50,12 @@ class _TransactionListState extends State<TransactionList> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        transaction.title,
+                        myTransactions[position].title,
                         style: const TextStyle(
                             color: Color(0xFF8F4430), fontSize: 10.0),
                       ),
                       Text(
-                        DateFormat.yMMMd().format(transaction.dateTime),
+                        DateFormat.yMMMd().format(myTransactions[position].dateTime),
                         style: const TextStyle(
                           color: Color(0xFFA5857D),
                           fontSize: 10.0,
@@ -83,7 +68,7 @@ class _TransactionListState extends State<TransactionList> {
             ),
           );
         },
-      ).toList(),
+      ),
     );
   }
 }

@@ -1,11 +1,6 @@
-import 'dart:math';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_complete_guide_2/widgets/TransactionList.dart';
-import 'package:intl/intl.dart';
-import 'model/Transaction.dart';
+import 'package:flutter_complete_guide_2/widgets/UserTransaction.dart';
 
 void main() {
   runApp(const MyApp());
@@ -50,8 +45,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          const Card(
+        children: const <Widget>[
+          Card(
             elevation: 5.0,
             margin: EdgeInsets.all(5.0),
             color: Color(0xFFDCBB94),
@@ -63,85 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ),
-          Card(
-            margin: const EdgeInsets.symmetric(
-              vertical: 15.0,
-              horizontal: 10.0,
-            ),
-            color: const Color(0xFFDCBB94),
-            elevation: 5.0,
-            child: Container(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: <Widget>[
-                  TextField(
-                    cursorColor: const Color(0xFF8F6330),
-                    decoration: const InputDecoration(
-                      labelText: 'Title',
-                      focusColor: Color(0xFF8F6330),
-                      labelStyle: TextStyle(
-                        color: Color(0xFF8F6330),
-                      ),
-                      disabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFF8F6330),
-                        ),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFF8F6330),
-                        ),
-                      ),
-                    ),
-                    controller: titleController,
-                  ),
-                  TextField(
-                    cursorColor: const Color(0xFF8F6330),
-                    decoration: const InputDecoration(
-                      labelText: 'Amount',
-                      focusColor: Color(0xFF8F6330),
-                      labelStyle: TextStyle(
-                        color: Color(0xFF8F6330),
-                      ),
-                      disabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFF8F6330),
-                        ),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFF8F6330),
-                        ),
-                      ),
-                    ),
-                    controller: amountController,
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 8.0),
-                    child: TextButton(
-                      onPressed: () {
-                        if (kDebugMode) {
-                          print('Title: ' +
-                              titleController.text +
-                              ", Amount: " +
-                              amountController.text);
-                        }
-                      },
-                      child: const Text(
-                        'Enabled',
-                        style: TextStyle(
-                          color: Color(0xFF8F6330),
-                          fontSize: 20.0,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          TransactionList(),
+          UserTransaction(),
         ],
       ),
       floatingActionButton: const FloatingActionButton(
