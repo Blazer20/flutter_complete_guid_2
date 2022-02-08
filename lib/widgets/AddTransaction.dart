@@ -13,7 +13,7 @@ class AddTransaction extends StatelessWidget {
     final enteredAmount =
         double.parse(amountController.text.replaceAll(RegExp(r'[^0-9]'), ''));
 
-    if(enteredTitle.isEmpty || enteredAmount == 0) return;
+    if(enteredTitle.isEmpty || enteredAmount <= 0) return;
 
     myAddNewTransaction(enteredTitle, enteredAmount);
   }
